@@ -16,8 +16,8 @@ body{
 }
 .main_container{
     display: grid;
-    grid-template-columns: auto auto auto auto;
-    gap: 30px;
+    grid-template-columns: 22.5% 22.5% 22.5% 22.5%;
+    gap: 3%;
 }
 .main-content {
     overflow-y: auto;
