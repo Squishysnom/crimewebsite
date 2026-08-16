@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--EXTRN lib so it look gud-->
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--ty ajax-->
+        <link rel="stylesheet" href="style2.css"> <!--style sheet-->
+        <script src="echarts.js"></script>
+        <script lang="JavaScript">
+            function createPage(name, price, img, page) { // creates product section
+
+            var productPlacement = document.getElementById("productPage"); // grab little product section
+
+            const productpg = document.createElement("div"); // creates the div for the product page
+            productpg.classList.add("product"); // adds class
+
+            const productbut = document.createElement("button"); // creates button
+            productbut.style.border = "none"; // border looks bad, removes it
+            productbut.style.outline = "none"; // border looks bad, removes it
+            productbut.style.cursor = "pointer";
+
+            // Make the button display the product name
+            productbut.textContent = name;
+
+            // Open the correct HTML page when clicked
+            productbut.addEventListener('click', () => {
+                window.open(`defaultData.html?page=${page}`, '_blank');  // opens new page with variables name, price and the image
+
+            });
+
+            const productdesc = document.createElement("div"); // creates the div for the product desc
+            productdesc.classList.add('product_desc'); // adds class
+
+            const header3product = document.createElement("h3"); // creates the h3
+            const desc = document.createElement("p"); // creates the p
+            const space = document.createElement("br");
+
+            header3product.textContent = name; // adds the name
+            desc.textContent = price; // adds the price
+
+            productPlacement.appendChild(productpg);
+            productpg.appendChild(productbut);
+            productpg.appendChild(productdesc);
+            productdesc.appendChild(header3product);
+            productdesc.appendChild(desc);
+            productdesc.appendChild(space);
+            }
+
+        </script>
+
+        <title>Shop Attempt v2</title>
+    </head>
+    <header>
+        <img src="shirts&pantslogo2.png" width="350px" alt="Company Logo"> <!--the company is not gonna be happy-->
+    </header>
+    <br>
+
+    <body>
+        <div class="showclass" id="showclass">
+           
+        </div>
+        <br>
+        <div class="main_container" id = "productPage"> <!--holds the products, div to 4 -->
+        </div>
+    </body>
+    <script>createPage("Principal offence(b)(c)", "Crime stuff and cool", "", "principal");
+    createPage("02 Acts intended to cause injury(f)", "Crime stuff and cool", "", "injury");
+    createPage("03 Sexual assault and related offences(g)", "Crime stuff and cool", "", "sexualassault");
+    createPage("04 Dangerous/negligent acts(h)", "Crime stuff and cool", "", "dangerousacts");
+    createPage("05 Abduction/harassment", "Crime stuff and cool", "", "abduction");
+    createPage("06 Robbery/extortion", "Crime stuff and cool", "", "robbery");
+    createPage("07 Unlawful entry with intent", "Crime stuff and cool", "", "unlawfulentry");
+    createPage("08 Theft(i)(j)", "Crime stuff and cool", "", "theft");
+    createPage("09 Fraud/deception(k)", "Crime stuff and cool", "", "fraud");
+    createPage("10 Illicit drug offences(l)", "Crime stuff and cool", "", "drugs");
+    createPage("11 Weapons/explosives", "Crime stuff and cool", "", "weapons");
+    createPage("12 Property damage and environmental pollution", "Crime stuff and cool", "", "propertydamage");
+    createPage("13 Public order offences(m)", "Crime stuff and cool", "", "publicorder");
+    createPage("15 Offences against justice(n)(o)", "Crime stuff and cool", "", "justice");
+    createPage("16 Miscellaneous offences", "Crime stuff and cool", "", "miscellaneous");
+    createPage("Pant", "1", "", "pant.html");
+    </script>
+</html>

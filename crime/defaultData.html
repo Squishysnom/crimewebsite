@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--EXTRN lib so it look gud-->
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--ty ajax-->
+        <link rel="stylesheet" href="style2.css"> <!--style sheet-->
+        <script src="echarts.js"></script>
+
+    </script>
+        <title>Shop Attempt v2</title>
+    </head>
+    <header>
+        <img src="shirts&pantslogo2.png" width="350px" alt="Company Logo"> <!--the company is not gonna be happy-->
+        <button onclick="openProductPage()">🛒</button>
+    </header>
+    <br>
+        <body>
+
+        <div class="main_container" id = "productPage"> <!--holds the products, div to 4 -->
+        </div>
+    </body>
+    <input type="file" id="myFile">
+    <br>
+    <div id="showplate" style="width: 75%;height:350px;">
+        <p id="myList" class="listStyle"></p>
+    </div>
+    <div id="showclass" class="showclass" style="width: 75%;height:500px;"></div>
+    <script type="text/javascript">
+        function checkScript() {
+            alert("a")
+            makeGraph('echarts', ['sales'], ['Shirts', 'Cardigans', 'Chiffons', 'Pants', 'Heels', 'Socks'], 'sales', 'bar', [5, 20, 36, 10, 10, 20])
+
+        }
+        
+        function checkCart() {
+            const params = new URLSearchParams(window.location.search);
+            const page = params.get('page');
+            checkScript()
+        }
+        function makeGraph(txt, ldat, xdat, snam, styp, sdat) {
+            var myChart = echarts.init(document.getElementById('showclass'));
+            var option = {
+                title: {
+                text: txt
+                },
+                tooltip: {},
+                legend: {
+                data: ldat
+                },
+                xAxis: {
+                data: xdat
+                },
+                yAxis: {},
+                series: [
+                {
+                    name: snam,
+                    type: styp,
+                    data: sdat
+                }
+                ]
+            };
+            myChart.setOption(option);
+        }
+        
+        function crimeType() {
+			var str, yourChoice;
+			str = "<p>Current Criminal Convictions</p>";
+			yourChoice = "highTech"
+			switch (yourChoice) {
+                case "highTech":
+					str = str + "<div id='myFile'><p>High Tech Crimes<br><iframe src='data/a.txt' width='815' height='300' frameborder='0' ></iframe></p></div>";
+					break;
+				case "organised":
+					str = str + "<div id='myFile'><p>Organised Crimes<br><iframe src='data/organised.txt' width='700' height='400' frameborder='0' ></iframe></p></div>";
+					break;
+				case "publicOrder":
+					str = str + "<div id='myFile'><p>Public Order Crimes<br><iframe src='data/publicOrder.txt' width='700' height='400' frameborder='0' ></iframe></p></div>";
+					break;
+				case "property":
+					str = str + "<div id='myFile'><p>Property Crimes<br><iframe src='data/property.txt' width='700' height='400' frameborder='0' ></iframe></p></div>";
+					break;
+				case "violent":
+					str = str + "<div id='myFile'><p>Violent Crimes<br><iframe src='data/violent.txt' width='700' height='400' frameborder='0' ></iframe></p></div>";
+					break;
+				case "whiteCollar":
+					str = str + "<div id='myFile'><p>White Collar Crimes<br><iframe src='data/whiteCollar.txt' width='700' height='400' frameborder='0' ></iframe></p></div>";
+					break;
+            }
+			document.getElementById("myList").innerHTML = str;
+
+        }
+    checkCart()
+    crimeType()
+    </script>
+    </div>
+
+</html>
