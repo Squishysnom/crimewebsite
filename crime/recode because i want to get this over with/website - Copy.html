@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Statistical Agency - Sample Layout</title>
+    <link rel="stylesheet" href="stylesheet.css"> <!--style sheet-->
+    <script src="echarts.js"></script>
+
+
+</head>
+<body>
+
+    <div class="gov-banner">
+        Official Government Data &amp; Statistics Portal
+    </div>
+
+    <header>
+        <div class="brand-title">Bureau of Statistics</div>
+      
+    </header>
+
+    <main>
+       
+        <div class="content-split">
+            <section>
+                <h1 id="title">TEXT TITLE HERE</h1>
+                <h3 id="title-desc">TEXT TITLE DESC</h3>
+                <br>
+                <h4 id="title-date">DATE HERE</h4>
+                <br>
+                <div class="news-list">
+                    <article class="part-item">
+                        <h4><a href="#">TITLE</a></h4>
+                        <p>SMALL-TEXT TESTING LENGTH: AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH</p>
+                        <div id="showclass" style="width: 100%;height:500px;">
+                        </div>
+                        <script type="text/javascript">
+                            function checkScript() {
+                                makeGraph('echarts', ['sales'], ['Shirts', 'Cardigans', 'Chiffons', 'Pants', 'Heels', 'Socks'], 'sales', 'bar', [5, 20, 36, 10, 10, 20])
+                            }
+                            function makeGraph(txt, ldat, xdat, snam, styp, sdat) {
+                                var myChart = echarts.init(document.getElementById('showclass'));
+                                var option = {
+                                    title: {
+                                    text: txt
+                                    },
+                                    tooltip: {},
+                                    legend: {
+                                    data: ldat
+                                    },
+                                    xAxis: {
+                                    data: xdat
+                                    },
+                                    yAxis: {},
+                                    series: [
+                                    {
+                                        name: snam,
+                                        type: styp,
+                                        data: sdat
+                                    }
+                                    ]
+                                };
+                                myChart.setOption(option);
+                            }
+                            
+                            function crimeType() {
+                                var str, yourChoice;
+                                str = "<p>Current Criminal Convictions</p>";
+                                yourChoice = "highTech"
+                                switch (yourChoice) {
+                                    case "highTech":
+                                        str = str + "<div id='myFile'><p>High Tech Crimes<br><iframe src='data/a.txt' width='815' height='300' frameborder='0' ></iframe></p></div>";
+                                        break;
+                                    case "organised":
+                                        str = str + "<div id='myFile'><p>Organised Crimes<br><iframe src='data/organised.txt' width='700' height='400' frameborder='0' ></iframe></p></div>";
+                                        break;
+                                    case "publicOrder":
+                                        str = str + "<div id='myFile'><p>Public Order Crimes<br><iframe src='data/publicOrder.txt' width='700' height='400' frameborder='0' ></iframe></p></div>";
+                                        break;
+                                    case "property":
+                                        str = str + "<div id='myFile'><p>Property Crimes<br><iframe src='data/property.txt' width='700' height='400' frameborder='0' ></iframe></p></div>";
+                                        break;
+                                    case "violent":
+                                        str = str + "<div id='myFile'><p>Violent Crimes<br><iframe src='data/violent.txt' width='700' height='400' frameborder='0' ></iframe></p></div>";
+                                        break;
+                                    case "whiteCollar":
+                                        str = str + "<div id='myFile'><p>White Collar Crimes<br><iframe src='data/whiteCollar.txt' width='700' height='400' frameborder='0' ></iframe></p></div>";
+                                        break;
+                                }
+                                document.getElementById("myList").innerHTML = str;
+
+                            }
+                            checkScript()
+                         </script>
+                    </article>
+                </div>
+            </section>
+
+            <aside>
+                <div class="sidebar-box">
+                    <h3>Census Data Portal</h3>
+                    <p>Access key regional demographics, housing statistics, and population profiles from the latest national census dataset.</p>
+                    <br>
+                    <a href="#" style="color: #0369a1; font-weight: bold; text-decoration: none;">Explore Regional Data &rarr;</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Statistics</h4>
+                <ul>
+                    <li><a href="#">Economy</a></li>
+                    <li><a href="#">Labor &amp; Employment</a></li>
+                    <li><a href="#">Population &amp; Society</a></li>
+                    <li><a href="#">Industry &amp; Commerce</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Data Tools</h4>
+                <ul>
+                    <li><a href="#">API Documentation</a></li>
+                    <li><a href="#">Microdata Access</a></li>
+                    <li><a href="#">TableBuilder</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Information</h4>
+                <ul>
+                    <li><a href="#">Release Calendar</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Bureau of Statistics Layout Sample. Built with semantic HTML &amp; CSS.
+        </div>
+    </footer>
+
+</body>
+</html>
