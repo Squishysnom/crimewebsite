@@ -21,7 +21,6 @@ body {
     line-height: 1.5;
 }
 
-/* Top Government Bar */
 .gov-banner {
     background-color: #0b1d3a;
     color: #ffffff;
@@ -29,7 +28,6 @@ body {
     padding: 6px 1.5rem;
 }
 
-/* Main Header */
 header {
     background-color: var(--primary-dark);
     color: white;
@@ -71,7 +69,6 @@ header {
     font-weight: 600;
 }
 
-/* Navigation */
 nav {
     background-color: #ffffff;
     border-bottom: 2px solid var(--card-border);
@@ -99,7 +96,6 @@ nav a:hover, nav a.active {
     border-bottom-color: var(--primary-blue);
 }
 
-/* Hero / Container Layout */
 main {
     max-width: 1200px;
     margin: 2rem auto;
@@ -112,7 +108,6 @@ main {
     color: var(--primary-dark);
 }
 
-/* Key Metrics Grid */
 .metrics-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -149,7 +144,6 @@ main {
     font-weight: 600;
 }
 
-/* Split Section: News & Census */
 .content-split {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -195,7 +189,14 @@ main {
     text-decoration: underline;
 }
 
-
+.table-show {
+    overflow-wrap: break-word;
+    border: 2px solid #1e293b;
+}
+.table-show tr td {
+    border: 2px solid #1e293b;
+    padding: 1%;
+}
 
 .part-item {
     background: white;
@@ -239,7 +240,6 @@ main {
     margin-bottom: 0.75rem;
 }
 
-/* Footer */
 footer {
     background-color: var(--primary-dark);
     color: white;

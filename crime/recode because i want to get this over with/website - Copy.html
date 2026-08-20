@@ -24,10 +24,10 @@
        
         <div class="content-split">
             <section>
-                <h1 id="title">TEXT TITLE HERE</h1>
-                <h3 id="title-desc">TEXT TITLE DESC</h3>
+                <h1 id="title">Principle Offences</h1>
+                <h3 id="title-desc">Recorded Crime – Offenders, 2023–24</h3>
                 <br>
-                <h4 id="title-date">DATE HERE</h4>
+                <h4 id="title-date">18/08/2026</h4>
                 <br>
                 <div class="news-list">
                     <article class="part-item">
@@ -35,11 +35,45 @@
                         <p>SMALL-TEXT TESTING LENGTH: AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH</p>
                         <div id="showclass" style="width: 100%;height:500px;">
                         </div>
+                        <table class="table-show" id="table-craft">
+                            <tr>
+                                <th id="table-title">Principle Offences</th>
+                                <th id="table-numbers">Offences (2008-09)</th>
+                            </tr>
+                        </table>
                         <script type="text/javascript">
                             function checkScript() {
-                                makeGraph('echarts', ['sales'], ['Shirts', 'Cardigans', 'Chiffons', 'Pants', 'Heels', 'Socks'], 'sales', 'bar', [5, 20, 36, 10, 10, 20])
+                                makeGraph('Principle Offences (2008-09)', ['2008-09'], ['Homicide and related offences', 'Acts intended to cause injury', 'Sexual Assault and related offences', 'Dangerous/negligant acts','Abduction/harassment','Robbery/extortion','Unlawful entry with intent', "Theft", 'Fraud/deception','Illict drug offences', 'Weapons/explosives','Property damage and enviromental pollution', 'Public order offences','Offences against justice', 'Miscellaneous offences'], 2, 'Offences (2008-09)', 'bar', [816, 72069, 6340, 1680, 3598, 3911, 15887,58941,10138,56310,8962,21953,65962,26201,16957])
+                                tableCreate('Principle Offences (2008-09)', ['2008-09'], ['Homicide and related offences', 'Acts intended to cause injury', 'Sexual Assault and related offences', 'Dangerous/negligant acts','Abduction/harassment','Robbery/extortion','Unlawful entry with intent', "Theft", 'Fraud/deception','Illict drug offences', 'Weapons/explosives','Property damage and enviromental pollution', 'Public order offences','Offences against justice', 'Miscellaneous offences'], 2,'Offences (2008-09)', 'bar', [816, 72069, 6340, 1680, 3598, 3911, 15887,58941,10138,56310,8962,21953,65962,26201,16957])
+
                             }
-                            function makeGraph(txt, ldat, xdat, snam, styp, sdat) {
+                            function tableCreate(txt, ldat, xdat, seri, snam, styp, sdat) {
+                                const grabTable = document.getElementById("table-craft");
+                                const grabTitles = document.getElementById("table-title");
+                                const grabNumber = document.getElementById("table-numbers");
+
+                                grabTitles.textContent = txt
+                                grabNumber.textContent = snam
+
+                                for (const obj in xdat) {
+                                    const newRow = grabTable.insertRow(-1)
+                                    const tdOffence = newRow.insertCell(0)
+                                    const tdNumber = newRow.insertCell(1)
+                                    tdOffence.textContent = xdat[obj]
+                                    tdNumber.textContent = sdat[obj]
+                                }
+                                const totalRow = grabTable.insertRow(-1)
+                                const tdTotal = totalRow.insertCell(0)
+                                const tdTotalNum = totalRow.insertCell(1)
+                                var totalDataResult = 0
+                                for (const obj in xdat) {
+                                    totalDataResult += parseInt(sdat[obj])
+                                    tdTotal.textContent = 'Total'
+                                    tdTotalNum.textContent = totalDataResult
+
+                                }
+                            }
+                            function makeGraph(txt, ldat, xdat, seri, snam, styp, sdat) {
                                 var myChart = echarts.init(document.getElementById('showclass'));
                                 var option = {
                                     title: {
@@ -52,7 +86,7 @@
                                     xAxis: {
                                     data: xdat
                                     },
-                                    yAxis: {},
+                                    yAxis: {}, 
                                     series: [
                                     {
                                         name: snam,
