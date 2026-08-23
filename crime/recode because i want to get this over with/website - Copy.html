@@ -31,36 +31,59 @@
                 <br>
                 <div class="news-list">
                     <article class="part-item">
-                        <h4><a href="#">TITLE</a></h4>
-                        <p>SMALL-TEXT TESTING LENGTH: AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH</p>
+                        <h4><a id="title-text" href="#">TITLE</a></h4>
+                        <p id="important-text">SMALL-TEXT TESTING LENGTH: AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH</p>
                         <div id="showclass" style="width: 100%;height:500px;">
                         </div>
                         <table class="table-show" id="table-craft">
-                            <tr>
+                            <tr id="all-class">
                                 <th id="table-title">Principle Offences</th>
-                                <th id="table-numbers">Offences (2008-09)</th>
                             </tr>
                         </table>
                         <script type="text/javascript">
                             function checkScript() {
-                                makeGraph('Principle Offences (2008-09)', ['2008-09'], ['Homicide and related offences', 'Acts intended to cause injury', 'Sexual Assault and related offences', 'Dangerous/negligant acts','Abduction/harassment','Robbery/extortion','Unlawful entry with intent', "Theft", 'Fraud/deception','Illict drug offences', 'Weapons/explosives','Property damage and enviromental pollution', 'Public order offences','Offences against justice', 'Miscellaneous offences'], 2, 'Offences (2008-09)', 'bar', [816, 72069, 6340, 1680, 3598, 3911, 15887,58941,10138,56310,8962,21953,65962,26201,16957])
-                                tableCreate('Principle Offences (2008-09)', ['2008-09'], ['Homicide and related offences', 'Acts intended to cause injury', 'Sexual Assault and related offences', 'Dangerous/negligant acts','Abduction/harassment','Robbery/extortion','Unlawful entry with intent', "Theft", 'Fraud/deception','Illict drug offences', 'Weapons/explosives','Property damage and enviromental pollution', 'Public order offences','Offences against justice', 'Miscellaneous offences'], 2,'Offences (2008-09)', 'bar', [816, 72069, 6340, 1680, 3598, 3911, 15887,58941,10138,56310,8962,21953,65962,26201,16957])
+                                const txttitl = document.getElementById("title-text");
 
+                                const txtimport = document.getElementById("important-text");
+                                var titl = 'Principle Offences (2008-09)'
+                                var ldat = ['2008-09']
+                                var xdat =  ['Homicide and related offences', 'Acts intended to cause injury', 'Sexual Assault and related offences', 'Dangerous/negligant acts','Abduction/harassment','Robbery/extortion','Unlawful entry with intent', "Theft", 'Fraud/deception','Illict drug offences', 'Weapons/explosives','Property damage and enviromental pollution', 'Public order offences','Offences against justice', 'Miscellaneous offences']
+                                var legn = ['Offences (2008-09)', 'Offences (2009-10)','Offences (2010-11)']
+                                var type = 'bar'
+                                var sdat = [816, 72069, 6340, 1680, 3598, 3911, 15887,58941,10138,56310,8962,21953,65962,26201,16957]
+                                var sdat_1 = [880,72280,6412,1823,3948,4070,15609,64382,9651,57899,8654,21067,75200,26092,19228]
+                                var sdat_2 = [757,70573,5796,1801,3563,3996,15158,64806,9046,58700,8820,19937,73845,23776,22190]
+
+
+                                var all_sdats = [sdat,sdat_1,sdat_2]
+                                var desc = "interest text"
+                                makeGraph(titl, ldat, xdat,2,legn,type, all_sdats)
+                                tableCreate(titl, ldat, xdat,2,legn,type,all_sdats)
+                                txttitl.textContent = titl
+
+                                txtimport.textContent = desc
                             }
                             function tableCreate(txt, ldat, xdat, seri, snam, styp, sdat) {
                                 const grabTable = document.getElementById("table-craft");
                                 const grabTitles = document.getElementById("table-title");
-                                const grabNumber = document.getElementById("table-numbers");
-
                                 grabTitles.textContent = txt
-                                grabNumber.textContent = snam
+                                for (const obj in snam) {
+                                    const grabTable = document.getElementById("all-class");
 
+                                    const th = document.createElement('th');
+                                    th.textContent = snam[obj];
+                                    grabTable.appendChild(th);
+                                };
+                                
                                 for (const obj in xdat) {
                                     const newRow = grabTable.insertRow(-1)
                                     const tdOffence = newRow.insertCell(0)
-                                    const tdNumber = newRow.insertCell(1)
-                                    tdOffence.textContent = xdat[obj]
-                                    tdNumber.textContent = sdat[obj]
+                                    for (const vari in snam) {
+
+                                        const tdNumber = newRow.insertCell(vari)
+                                        tdOffence.textContent = xdat[obj]
+                                        tdNumber.textContent = (sdat[vari])[obj]
+                                    }
                                 }
                                 const totalRow = grabTable.insertRow(-1)
                                 const tdTotal = totalRow.insertCell(0)
@@ -86,13 +109,43 @@
                                     xAxis: {
                                     data: xdat
                                     },
-                                    yAxis: {}, 
+                                    yAxis: {},
                                     series: [
                                     {
-                                        name: snam,
+                                        name: snam[0],
                                         type: styp,
-                                        data: sdat
-                                    }
+                                        data: sdat[0]
+                                    },
+                                    {
+                                        name: snam[1],
+                                        type: styp,
+                                        data: sdat[1]
+                                    },
+                                    {
+                                        name: snam[2],
+                                        type: styp,
+                                        data: sdat[2]
+                                    },
+                                    {
+                                        name: snam[3],
+                                        type: styp,
+                                        data: sdat[3]
+                                    },
+                                    {
+                                        name: snam[4],
+                                        type: styp,
+                                        data: sdat[4]
+                                    },
+                                    {
+                                        name: snam[5],
+                                        type: styp,
+                                        data: sdat[5]
+                                    },
+                                    {
+                                        name: snam[6],
+                                        type: styp,
+                                        data: sdat[6]
+                                    },
                                     ]
                                 };
                                 myChart.setOption(option);
