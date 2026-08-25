@@ -40,24 +40,39 @@
                                 <th id="table-title">Principle Offences</th>
                             </tr>
                         </table>
+                        <div id="showclass2" style="width: 100%;height:500px;">
+                        </div>
                         <script type="text/javascript">
                             function checkScript() {
                                 const txttitl = document.getElementById("title-text");
 
                                 const txtimport = document.getElementById("important-text");
-                                var titl = 'Principle Offences (2008-09)'
-                                var ldat = ['2008-09']
+
+                                var titl = 'Principle Offences (2008-2016)'
+                                var ldat = ['Offences']
                                 var xdat =  ['Homicide and related offences', 'Acts intended to cause injury', 'Sexual Assault and related offences', 'Dangerous/negligant acts','Abduction/harassment','Robbery/extortion','Unlawful entry with intent', "Theft", 'Fraud/deception','Illict drug offences', 'Weapons/explosives','Property damage and enviromental pollution', 'Public order offences','Offences against justice', 'Miscellaneous offences']
-                                var legn = ['Offences (2008-09)', 'Offences (2009-10)','Offences (2010-11)']
+                                var legn = ['Offences (2008-09)', 'Offences (2009-10)','Offences (2010-11)', 'Offences (2011-12)',  'Offences (2012-13)',  'Offences (2013-14)',  'Offences (2014-15)',  'Offences (2015-16)',]
                                 var type = 'bar'
+                                var type_1 = 'pie'
+
                                 var sdat = [816, 72069, 6340, 1680, 3598, 3911, 15887,58941,10138,56310,8962,21953,65962,26201,16957]
                                 var sdat_1 = [880,72280,6412,1823,3948,4070,15609,64382,9651,57899,8654,21067,75200,26092,19228]
                                 var sdat_2 = [757,70573,5796,1801,3563,3996,15158,64806,9046,58700,8820,19937,73845,23776,22190]
+                                var sdat_3 = [661,68476,6019,1899,3488,3620,13934,64587,8690,60729,9651,18385,69442,22927,24397]
+                                var sdat_4 = [728,70371,6173,1897,3773,3634,12713,62520,10126,65346,10524,18000,73940,24288,29453]
+                                var sdat_5 = [677,71395,7255,2079,3975,3330,12483,47913,11944,73300,10513,17443,77043,25529,22454]
+                                var sdat_6 = [712,72721,7639,2135,4592,3172,11742,39424,12509,81161,11866,16399,69982,25780,21956]
+                                var sdat_7 = [702,76206,7898,2247,4857,3194,12297,42060,11224,83204,12284,16403,64014,27172,19556]
+                                var sdat_8 = [665,78421,8123,2465,4943,3388,12360,42221,11112,81160,12117,16263,61198,26065,15739]
+                                var sdat_9 = [683,78308,8523,2131,3953,3462,12186,41476,12146,77784,14463,15732,61237,27037,16161]
+                                var sdat_10 = [683,78537,8619,2005,3939,3753,12244,41233,11976,77208,15313,14628,53583,27466,15051]
 
+                                var all_sdats = [sdat,sdat_1,sdat_2, sdat_3,sdat_4, sdat_5, sdat_6, sdat_7, sdat_8, sdat_9, sdat_10]
+                                var desc = "Principle Drug Offences between 2008 to 2016."
 
-                                var all_sdats = [sdat,sdat_1,sdat_2]
-                                var desc = "interest text"
-                                makeGraph(titl, ldat, xdat,2,legn,type, all_sdats)
+                                makeGraph(titl, ldat, xdat,2,legn,type, all_sdats, 'showclass')
+                                makeGraph(titl, ldat, xdat,2,legn, type_1, all_sdats, 'showclass2')
+
                                 tableCreate(titl, ldat, xdat,2,legn,type,all_sdats)
                                 txttitl.textContent = titl
 
@@ -74,30 +89,35 @@
                                     th.textContent = snam[obj];
                                     grabTable.appendChild(th);
                                 };
-                                
+                                var totalDataResult = 0
                                 for (const obj in xdat) {
                                     const newRow = grabTable.insertRow(-1)
                                     const tdOffence = newRow.insertCell(0)
                                     for (const vari in snam) {
-
-                                        const tdNumber = newRow.insertCell(vari)
+                                        const tdNumber = newRow.insertCell(-1)
                                         tdOffence.textContent = xdat[obj]
                                         tdNumber.textContent = (sdat[vari])[obj]
                                     }
                                 }
                                 const totalRow = grabTable.insertRow(-1)
-                                const tdTotal = totalRow.insertCell(0)
-                                const tdTotalNum = totalRow.insertCell(1)
                                 var totalDataResult = 0
-                                for (const obj in xdat) {
-                                    totalDataResult += parseInt(sdat[obj])
-                                    tdTotal.textContent = 'Total'
-                                    tdTotalNum.textContent = totalDataResult
+                                const tdTotal = totalRow.insertCell(-1)
+                                tdTotal.textContent = 'Total'
+                                for (const vari in snam) {
+                                    const tdNumber = totalRow.insertCell(-1)
+
+                                    for (const obj in sdat[vari]) {
+                                        tdNumber.textContent = (sdat[vari])[obj]
+                                        totalDataResult += parseInt(sdat[vari][obj])
+                                    }
+                                    tdNumber.textContent = totalDataResult
+
 
                                 }
+                                
                             }
-                            function makeGraph(txt, ldat, xdat, seri, snam, styp, sdat) {
-                                var myChart = echarts.init(document.getElementById('showclass'));
+                            function makeGraph(txt, ldat, xdat, seri, snam, styp, sdat, ids) {
+                                var myChart = echarts.init(document.getElementById(ids));
                                 var option = {
                                     title: {
                                     text: txt
@@ -145,6 +165,11 @@
                                         name: snam[6],
                                         type: styp,
                                         data: sdat[6]
+                                    },
+                                    {
+                                        name: snam[7],
+                                        type: styp,
+                                        data: sdat[7]
                                     },
                                     ]
                                 };
@@ -230,21 +255,30 @@
 
 </body>
 </html>
-816	880	757	661	728	677	712	702	665	683	752	723	707	635	627	677
-72,069	72,280	70,573	68,476	70,371	71,395	72,721	76,206	78,421	78,308	78,537	78,523	82,942	83,926	91,007	92,259
-6,340	6,412	5,796	6,019	6,173	7,255	7,639	7,898	8,123	8,523	8,619	8,678	8,982	8,995	9,531	9,585
-1,680	1,823	1,801	1,899	1,897	2,079	2,135	2,247	2,465	2,131	2,005	1,791	2,014	2,067	1,976	2,002
+var sdat_3 = [661,68476,6019,1899,3488,3620,13934,64587,8690,60729,9651,18385,69442,22927,24397]
+var sdat_4 = [728,70371,6173,1897,3773,3634,12713,62520,10126,65346,10524,18000,73940,24288,29453]
+var sdat_5 = [677,71395,7255,2079,3975,3330,12483,47913,11944,73300,10513,17443,77043,25529,22454]
+var sdat_6 = [712,72721,7639,2135,4592,3172,11742,39424,12509,81161,11866,16399,69982,25780,21956]
+var sdat_7 = [702,76206,7898,2247,4857,3194,12297,42060,11224,83204,12284,16403,64014,27172,19556]
+var sdat_8 = [665,78421,8123,2465,4943,3388,12360,42221,11112,81160,12117,16263,61198,26065,15739]
+var sdat_9 = [683,78308,8523,2131,3953,3462,12186,41476,12146,77784,14463,15732,61237,27037,16161]
+var sdat_10 = [683,78537,8619,2005,3939,3753,12244,41233,11976,77208,15313,14628,53583,27466,15051]
+
+	661	728	677	712	702a	665	683	752	723	707	635	627	677
+	68476	70371	71395	72721	76206a	78421	78308	78537	78523	82942	83926	91007	92259
+	6019	6173	7255	7639	7898	8123	8523	8619	8678	8982	8995	9531	9585
+	1899	1897	2079	2135	2247	2465	2131	2005	1791	2014	2067	1976	2002
 															
-3,598	3,948	3,563	3,488	3,773	3,975	4,592	4,857	4,943	3,953	3,939	4,039	4,285	4,200	4,507	3,708
+	3488	3773	3975	4592	4857	4943	3953	3939	4039	4285	4200	4507	3708
 															
-3,911	4,070	3,996	3,620	3,634	3,330	3,172	3,194	3,388	3,462	3,753	4,270	3,350	3,479	4,016	3,967
+	3620	3634	3330	3172	3194	3388	3462	3753	4270	3350	3479	4016	3967
 															
-15,887	15,609	15,158	13,934	12,713	12,483	11,742	12,297	12,360	12,186	12,244	12,323	10,200	10,519	11,338	11,095
-58,941	64,382	64,806	64,587	62,520	47,913	39,424	42,060	42,221	41,476	41,233	39,021	31,128	29,571	35,201	34,919
-10,138	9,651	9,046	8,690	10,126	11,944	12,509	11,224	11,112	12,146	11,976	11,553	9,380	8,417	8,869	8,663
-56,310	57,899	58,700	60,729	65,346	73,300	81,161	83,204	81,160	77,784	77,208	74,443	62,698	50,920	52,315	48,213
-8,962	8,654	8,820	9,651	10,524	10,513	11,866	12,284	12,117	14,463	15,313	15,018	13,105	12,072	12,757	14,804
-21,953	21,067	19,937	18,385	18,000	17,443	16,399	16,403	16,263	15,732	14,628	14,281	14,524	14,411	14,367	13,576
-65,962	75,200	73,845	69,442	73,940	77,043	69,982	64,014	61,198	61,237	53,583	40,975	38,151	34,090	36,841	32,307
-26,201	26,092	23,776	22,927	24,288	25,529	25,780	27,172	26,065	27,037	27,466	27,695	28,852	28,707	31,041	31,101
-16,957	19,228	22,190	24,397	29,453	22,454	21,956	19,556	15,739	16,161	15,051	18,353	31,209	61,229	11,254	9,876
+	13934	12713	12483	11742	12297	12360	12186	12244	12323	10200	10519	11338	11095
+	64587	62520	47913	39424	42060	42221	41476	41233	39021	31128	29571	35201	34919
+	8690	10126	11944	12509	11224	11112	12146	11976	11553	9380	8417	8869	8663
+	60729	65346	73300	81161	83204	81160	77784	77208	74443	62698	50920	52315	48213
+	9651	10524	10513	11866	12284	12117	14463	15313	15018	13105	12072	12757	14804
+	18385	18000	17443	16399	16403	16263	15732	14628	14281	14524	14411	14367	13576
+	69442	73940	77043	69982	64014	61198	61237	53583	40975	38151	34090	36841	32307
+	22927	24288	25529	25780	27172	26065	27037	27466	27695	28852	28707	31041	31101
+	24397	29453	22454	21956	19556	15739	16161a	15051	18353	31209	61229	11254	9876
