@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>National Statistical Agency - Sample Layout</title>
     <link rel="stylesheet" href="stylesheet.css"> <!--style sheet-->
-
 </head>
 <body>
 
@@ -63,8 +62,8 @@
                 <div class="news-list">
                     <article class="news-item">
                         <div class="date">Released 18/08/2026, 9:10 AM</div>
-                        <h4><a href="website - Copy.html">Principle Offences</a></h4>
-                        <p>Recorded Crime – Offenders, 2023–24</p>
+                        <h4><a href="website - Copy.html" id="title-1"></a></h4>
+                        <p id="desc-1"></p>
                     </article>
                 </div>
             </section>
@@ -112,6 +111,25 @@
             &copy; 2026 Bureau of Statistics Layout Sample. Built with semantic HTML &amp; CSS.
         </div>
     </footer>
+    <script type="text/javascript">
+        async function articleCreator(articles, titlepr, descpr) {
+            try {
+                const titleArt = document.getElementById(titlepr)
+                const titleDesc = document.getElementById(descpr)
 
+                const response = await fetch(articles);
+                const grabbed = await response.json();   
+                var titl = grabbed.titl
+                var desc = grabbed.desc
+
+                titleArt.textContent = titl
+                titleDesc.textContent = desc
+            } catch (error) {
+                alert("ERROR")
+            }
+        }
+        
+        articleCreator('./data/archieve.json', 'title-1', 'desc-1')
+    </script>
 </body>
 </html>

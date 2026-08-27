@@ -45,7 +45,7 @@
                         <script type="text/javascript">
                             async function documentReader() {
                                 try {
-                                    const response = await fetch('./archieve.json');
+                                    const response = await fetch('./data/archieve.json');
                                     const grabbed = await response.json();      
 
                                     var titl = grabbed.titl
@@ -68,8 +68,6 @@
 
                                     var all_sdats = [sdat,sdat_1,sdat_2, sdat_3,sdat_4, sdat_5, sdat_6, sdat_7, sdat_8, sdat_9, sdat_10]
                                     var desc = grabbed.desc
-                                    alert("A")
-                                    alert(titl, ldat, xdat, legn, type,  all_sdats, desc)
                                     checkScript(titl, ldat, xdat, legn, type,  all_sdats, desc);
                                     
                                 } catch (error) {
@@ -78,6 +76,9 @@
                             }
                             function checkScript(titl, ldat, xdat, legn, type,  all_sdats, desc) {
                                 const txttitl = document.getElementById("title-text");
+                                const txttitles = document.getElementById("title");
+
+                                const txtdesc = document.getElementById("title-desc");
 
                                 const txtimport = document.getElementById("important-text");
 
@@ -85,8 +86,11 @@
 
                                 tableCreate(titl, ldat, xdat,2,legn,type,all_sdats)
                                 txttitl.textContent = titl
+                                txttitles.textContent = titl
 
                                 txtimport.textContent = desc
+                                txtdesc.textContent = desc
+
                             }
                             function tableCreate(txt, ldat, xdat, seri, snam, styp, sdat) {
                                 const grabTable = document.getElementById("table-craft");
@@ -186,33 +190,7 @@
                                 myChart.setOption(option);
                             }
                             
-                            function crimeType() {
-                                var str, yourChoice;
-                                str = "<p>Current Criminal Convictions</p>";
-                                yourChoice = "highTech"
-                                switch (yourChoice) {
-                                    case "highTech":
-                                        str = str + "<div id='myFile'><p>High Tech Crimes<br><iframe src='data/a.txt' width='815' height='300' frameborder='0' ></iframe></p></div>";
-                                        break;
-                                    case "organised":
-                                        str = str + "<div id='myFile'><p>Organised Crimes<br><iframe src='data/organised.txt' width='700' height='400' frameborder='0' ></iframe></p></div>";
-                                        break;
-                                    case "publicOrder":
-                                        str = str + "<div id='myFile'><p>Public Order Crimes<br><iframe src='data/publicOrder.txt' width='700' height='400' frameborder='0' ></iframe></p></div>";
-                                        break;
-                                    case "property":
-                                        str = str + "<div id='myFile'><p>Property Crimes<br><iframe src='data/property.txt' width='700' height='400' frameborder='0' ></iframe></p></div>";
-                                        break;
-                                    case "violent":
-                                        str = str + "<div id='myFile'><p>Violent Crimes<br><iframe src='data/violent.txt' width='700' height='400' frameborder='0' ></iframe></p></div>";
-                                        break;
-                                    case "whiteCollar":
-                                        str = str + "<div id='myFile'><p>White Collar Crimes<br><iframe src='data/whiteCollar.txt' width='700' height='400' frameborder='0' ></iframe></p></div>";
-                                        break;
-                                }
-                                document.getElementById("myList").innerHTML = str;
-
-                            }
+                        
                             documentReader()
 
                          </script>
