@@ -1,0 +1,35 @@
+Hello, this is the AT5 Technical Work-through for the ABS Site Recreation Project. 
+Firstly, we are going to go through the basic structure the java-script follows for the site. When the ABS's main page is opened, a function called 'articleCreator' will be initialised with the paths for the corresponding data json, title id and description id. articleCreator will then attempt to run the following code: The function will attempt to use the title id and description id to find the corresponding article's title element and description element. If these pass are found, articleCreator will attempt to 'fetch' the data json using the given information, then accessing it if this function passes. Then the articleCreator will simply change the title and description's text content to the title and description inside the data's json file. 
+
+Hello everyone this is the AT5 Technical Work-through for the ABS Site Reaction Project. Today I am going to walk through the technical implementations for the rewritten ABS site's javascript functions and how they interact with users.
+The goal of the rewrite was to improve retention; declutter and to streamline the functionality of the ABS. I'll cover the structure briefly; step through the code's execution pathway, and show how it all works in tandum.
+
+The page structure can be simplified to two different categories. The Main Page; the json files and the Information Pages. The main page handles the articles which link to these information pages using their according json files to track data such as titles and descriptions,  the infomation pages hold the infomation provided by the json files, and the json files hold all the needed information used by each page such as data; titles and descriptions. This structure allows for information stored in the json files to be changed globally in one position, making edits easier. It should be noted that json files do not change the structure of the information pages.
+
+When the main page loads, a function called 'articleCreator' is immediately initialised with needed information (title id, description id and path to the json file). Article Creator handles articles title and description to correctly update them with the correct information provided by the json file stored in the database. If this json file can either not be found then an error will be alerted and placeholder text will be shown.
+
+When the infomation page loads, a function called 'documentReader' is imediately initialised with the infomation needed to find the json file corresponding with the page. Document reader handles the collection of data from the json file and compiles them into the neccessary vaiables required for page (graphs; tables and general text). Document reader then sends this infomation into another function 'checkscript'.
+
+Checkscript, similary to articleCreator, uses infomation given to handle infomation on the page (such as titles and descriptions). However, Checkscript also sends this infomation to two other functions called 'makegraph' and 'tablecreate'.
+
+when tablecreate is inistialised with the infomation from checkscript, table create collects the ids for elements for the table such as the title and inputting the corresponding data inside. The table create function will create table headers for every series name, and  create rows and cells for every corresponding data entry in order of date. Totalling all data in correspondance with their series name.
+
+When makeGraph is initialised with the infomation from checkscript, make graph will initialise echarts - a third party plugin - and create a graph using the infomation granted from checkscript. Setting the graph at the id given when initalised.
+
+The functions were intentionally laid in this hierarchal system so when I went to test these functions, I could employed a strategy of layering alerts with specific ids so I could pin point the exact areas where errors would occur. Inside these ids I would have the location, and a list of every variable that was collected so I could see every function that successfully ran.
+When debugging a newly added function, I would use the function, 'debugtest', along with the previously mentioned test stratergy. Debugtest would run the required functions along with the specified function, alerting after every function ended. If this ran correctly, then the function would be natively added and tested.
+
+
+
+
+
+
+
+
+
+
+• This is a focused, short presentation that digs into the technical aspects of your solution
+• You would explain things like your code structure, key algorithms, data handling, debugging
+& testing approach, specific technical choices and why you made them
+• It’s tailored to demonstrate technical understanding and skills in a concise way
+• It is limited to about 3 minutes
